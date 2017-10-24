@@ -20,3 +20,4 @@ mapping = {'NORMAL/MEDIU': 'normalmedium',
            }
 df.Built = df.Built.map(mapping)
 df.to_csv('cleandata.csv', index=False)
+print(df.State.unique())

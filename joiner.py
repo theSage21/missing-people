@@ -109,7 +109,13 @@ def get_built(x):
 
 
 def get_missing_date(x):
-    return x.split(' ')[-1]
+    parts = list(reversed(x.split(' ')))
+    date = ''
+    for p in parts:
+        nd = date + p
+        if nd.count('/') == 2:
+            return date
+    return None
 
 
 def get_ps(x):
@@ -117,11 +123,15 @@ def get_ps(x):
 
 
 def get_district(x):
-    return x.split('/')[1]
+    diststate = x.split('#')[0]
+    dist = '/'.join(diststate.split('/')[:-1])
+    return dist
 
 
 def get_state(x):
-    return x.split('/')[2]
+    diststate = x.split('#')[0]
+    state = diststate.split('/')[-1][:-2].strip()
+    return state
 
 
 df['Name'] = raw.A.apply(get_name)
@@ -137,6 +147,8 @@ df['Date'] = raw.C.apply(get_missing_date)
 df['Dist'] = raw.D.apply(get_district)
 df['State'] = raw.D.apply(get_state)
 
+
+print(raw.D)
 
 # -------------
 df.to_csv('data.csv', index=False)
