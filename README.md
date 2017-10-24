@@ -8,3 +8,6 @@ We use Tabula to extract the CSVs and perform post processing on top of that.
 1. Extract multiple csvs and store in `csvs` folder.
 2. Run `python joiner.py`
 3. Run `python cleaner.py`
+
+
+Final dataset is at [cleandata.csv](cleandata.csv)
